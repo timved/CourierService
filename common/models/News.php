@@ -13,6 +13,8 @@ use Yii;
  * @property string $created_at
  * @property string $header
  * @property string $content
+ *
+ * @property NewsGalleries[] $newsGalleries
  */
 class News extends ActiveRecord
 {
@@ -51,5 +53,13 @@ class News extends ActiveRecord
             'header' => 'Header',
             'content' => 'Content',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNewsGalleries()
+    {
+        return $this->hasMany(NewsGalleries::className(), ['id_new' => 'id']);
     }
 }

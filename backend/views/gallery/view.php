@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'guid',
-            'tags',
             'img',
             'description:ntext',
         ],

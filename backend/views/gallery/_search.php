@@ -17,8 +17,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'guid') ?>
 
-    <?= $form->field($model, 'tags') ?>
-
     <?= $form->field($model, 'img') ?>
 
     <?= $form->field($model, 'description') ?>

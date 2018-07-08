@@ -5,12 +5,14 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "gallery".
+ * This is the model class for table "galleries".
  *
  * @property string $guid
- * @property array $tags
  * @property string $img
  * @property string $description
+ *
+ * @property NewsGalleries[] $newsGalleries
+ * @property Tags[] $tags
  */
 class Gallery extends \yii\db\ActiveRecord
 {
@@ -19,7 +21,7 @@ class Gallery extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'gallery';
+        return 'galleries';
     }
 
     /**
@@ -28,12 +30,11 @@ class Gallery extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['guid'], 'required'],
-            [['tags'], 'safe'],
-            [['description'], 'string'],
-            [['guid'], 'string', 'max' => 36],
-            [['img'], 'string', 'max' => 255],
-            [['guid'], 'unique'],
+//            [['guid'], 'required'],
+//            [['description'], 'string'],
+//            [['guid'], 'string', 'max' => 36],
+//            [['img'], 'string', 'max' => 255],
+//            [['guid'], 'unique'],
         ];
     }
 
@@ -44,9 +45,24 @@ class Gallery extends \yii\db\ActiveRecord
     {
         return [
             'guid' => 'Guid',
-            'tags' => 'Tags',
             'img' => 'Img',
             'description' => 'Description',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNewsGalleries()
+    {
+        return $this->hasMany(NewsGalleries::className(), ['guid_gallery' => 'guid']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['gallery_guid' => 'guid']);
     }
 }

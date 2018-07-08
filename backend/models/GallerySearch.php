@@ -18,7 +18,7 @@ class GallerySearch extends Gallery
     public function rules()
     {
         return [
-            [['guid', 'tags', 'img', 'description'], 'safe'],
+            [['guid', 'img', 'description'], 'safe'],
         ];
     }
 
@@ -58,7 +58,6 @@ class GallerySearch extends Gallery
 
         // grid filtering conditions
         $query->andFilterWhere(['ilike', 'guid', $this->guid])
-            ->andFilterWhere(['ilike', 'tags', $this->tags])
             ->andFilterWhere(['ilike', 'img', $this->img])
             ->andFilterWhere(['ilike', 'description', $this->description]);
 

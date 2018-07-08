@@ -12,9 +12,8 @@ class m180705_175514_create_gallery_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('gallery', [
+        $this->createTable('galleries', [
             'guid' => $this->char(36)->unique()->notNull() . ' PRIMARY KEY',
-            'tags' => 'JSONB',
             'img' => $this->string(),
             'description' => $this->text(),
         ]);
@@ -25,6 +24,6 @@ class m180705_175514_create_gallery_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('gallery');
+        $this->dropTable('galleries');
     }
 }

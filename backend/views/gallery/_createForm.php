@@ -1,22 +1,22 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Hpp
+ * Date: 07.07.2018
+ * Time: 22:16
+ */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model common\models\Gallery */
-/* @var $form yii\widgets\ActiveForm */
+use yii\widgets\Pjax;
 ?>
-
-
 
 <div class="gallery-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form =ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'guid')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name')->textInput() ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'file')->fileInput() ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
@@ -26,4 +26,10 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
+
+
 </div>
+
+<?php Pjax::begin(); ?>
+
+<?php Pjax::end();?>

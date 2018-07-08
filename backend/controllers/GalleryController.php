@@ -2,12 +2,14 @@
 
 namespace backend\controllers;
 
+use backend\models\CreateGalleryItemForm;
 use Yii;
 use common\models\Gallery;
 use backend\models\GallerySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * GalleryController implements the CRUD actions for Gallery model.
@@ -64,10 +66,12 @@ class GalleryController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Gallery();
+        $model = new CreateGalleryItemForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->guid]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->createGalleryItem();
+            return $this->redirect(['view', 'id' => $model->guid]); // не открывается вью после создания
         }
 
         return $this->render('create', [
