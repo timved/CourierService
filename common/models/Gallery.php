@@ -53,10 +53,6 @@ class Gallery extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNewsGalleries()
-    {
-        return $this->hasMany(NewsGalleries::className(), ['guid_gallery' => 'guid']);
-    }
 
     /**
      * @return \yii\db\ActiveQuery

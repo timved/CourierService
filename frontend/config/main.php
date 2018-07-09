@@ -12,14 +12,8 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-//        'response' => [
-//            'format' => \yii\web\Response::FORMAT_JSON,
-//        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
-//            'parsers' => [
-//                'application/json' => 'yii\web\JsonParser',
-//            ]
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -47,9 +41,10 @@ return [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'news'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'gallery'],
-//                'news/' => 'news/news',
+                'news/' => 'site/news',
+                'gallery' => 'site/galleries',
+                'news/<id:\d+>' => 'site/one-news',
+                'gallery/<guid:>' => 'site/one-gallery',
             ],
         ],
 

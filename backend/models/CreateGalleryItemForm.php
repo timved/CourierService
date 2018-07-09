@@ -30,7 +30,6 @@ class CreateGalleryItemForm extends Model
             [['file'], 'file', 'extensions' => 'png, jpg, jpeg, gif', 'wrongExtension' => 'Допустимый формат файла: png, jpg, jpeg, gif'],
             [['name'], 'string'],
             [['name'],'required','message' => 'поле обязательно для заполнения'],
-//            [['file'],'required','message' => 'не выбрана картинка'],
         ];
     }
 

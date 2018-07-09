@@ -55,17 +55,13 @@ class News extends ActiveRecord
             'created_at' => 'Created At',
             'header' => 'Header',
             'content' => 'Content',
-            'file' => 'file'
+            'file' => 'Preview'
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNewsGalleries()
-    {
-        return $this->hasMany(NewsGalleries::className(), ['id_new' => 'id']);
-    }
 
     public function createPreviewNews()
     {

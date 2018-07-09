@@ -6,6 +6,7 @@ use backend\models\CreateGalleryItemForm;
 use Yii;
 use common\models\Gallery;
 use backend\models\GallerySearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,22 +15,12 @@ use yii\web\UploadedFile;
 /**
  * GalleryController implements the CRUD actions for Gallery model.
  */
-class GalleryController extends Controller
+class GalleryController extends BaseController
 {
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Gallery models.
@@ -71,7 +62,7 @@ class GalleryController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->file = UploadedFile::getInstance($model, 'file');
             $model->createGalleryItem();
-            return $this->redirect(['view', 'id' => $model->guid]); // не открывается вью после создания
+            return $this->redirect(['view', 'id' => $model->guid]);
         }
 
         return $this->render('create', [
