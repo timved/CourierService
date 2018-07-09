@@ -12,14 +12,14 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'response' => [
-            'format' => \yii\web\Response::FORMAT_JSON,
-        ],
+//        'response' => [
+//            'format' => \yii\web\Response::FORMAT_JSON,
+//        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
-            'parsers' => [
-                'application/json' => 'yii\web\JsonParser',
-            ]
+//            'parsers' => [
+//                'application/json' => 'yii\web\JsonParser',
+//            ]
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -44,11 +44,12 @@ return [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
+            'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'news'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'gallery'],
+//                'news/' => 'news/news',
             ],
         ],
 

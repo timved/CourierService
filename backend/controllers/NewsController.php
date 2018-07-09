@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
 /**
- * NewsController implements the CRUD actions for News model.
+ * JsonController implements the CRUD actions for News model.
  */
 class NewsController extends Controller
 {
