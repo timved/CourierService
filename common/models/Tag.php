@@ -42,8 +42,8 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'gallery_guid' => 'Gallery Guid',
+            'name' => 'Тэг',
+            'gallery_guid' => 'Guid',
         ];
     }
 

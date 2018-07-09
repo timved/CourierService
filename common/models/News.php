@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "news".
@@ -18,6 +19,7 @@ use Yii;
  */
 class News extends ActiveRecord
 {
+    public $file;
     /**
      * {@inheritdoc}
      */
@@ -37,6 +39,7 @@ class News extends ActiveRecord
             [['content'], 'string'],
             [['slug', 'preview', 'header'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            [['file'], 'file', 'extensions' => 'png, jpg, jpeg, gif', 'wrongExtension' => 'Допустимый формат файла: png, jpg, jpeg, gif'],
         ];
     }
 
@@ -52,6 +55,7 @@ class News extends ActiveRecord
             'created_at' => 'Created At',
             'header' => 'Header',
             'content' => 'Content',
+            'file' => 'file'
         ];
     }
 
@@ -61,5 +65,17 @@ class News extends ActiveRecord
     public function getNewsGalleries()
     {
         return $this->hasMany(NewsGalleries::className(), ['id_new' => 'id']);
+    }
+
+    public function createPreviewNews()
+    {
+        $file = $this->file;
+        $fileName = $file->getBaseName() . "{$this->header}" . "." . $file->getExtension();
+        $filePath = \Yii::getAlias("@webroot/img/$fileName");
+        $this->preview = $filePath;
+        $this->save();
+        $this->file->saveAs($filePath);
+        Image::thumbnail("@webroot/img/$fileName", 200, 200)->save(\Yii::getAlias("@webroot/img/small/$fileName",['quality' => 70]));
+
     }
 }

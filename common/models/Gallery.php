@@ -31,7 +31,7 @@ class Gallery extends \yii\db\ActiveRecord
     {
         return [
 //            [['guid'], 'required'],
-//            [['description'], 'string'],
+            [['description'], 'string'],
 //            [['guid'], 'string', 'max' => 36],
 //            [['img'], 'string', 'max' => 255],
 //            [['guid'], 'unique'],
@@ -45,8 +45,8 @@ class Gallery extends \yii\db\ActiveRecord
     {
         return [
             'guid' => 'Guid',
-            'img' => 'Img',
-            'description' => 'Description',
+            'img' => 'Картинка',
+            'description' => 'Описание',
         ];
     }
 
@@ -64,5 +64,10 @@ class Gallery extends \yii\db\ActiveRecord
     public function getTags()
     {
         return $this->hasMany(Tag::className(), ['gallery_guid' => 'guid']);
+    }
+
+    public function getTagsName()
+    {
+
     }
 }

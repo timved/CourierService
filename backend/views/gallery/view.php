@@ -31,6 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'guid',
             'img',
             'description:ntext',
+            [
+                'label' => 'Тэги',
+                'attribute' => 'name',
+                'format' => 'html',
+                'value' => function ($model) {
+                    $tags = '';
+                    foreach ($model->tags as $key => $tag) {
+                        if ($key !== 0) {
+                            $tags .= '<br />';
+                        }
+                        $tags .= $tag['name'];
+                    }
+                    return $tags;
+                },
+            ],
         ],
     ]) ?>
 

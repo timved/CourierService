@@ -9,6 +9,7 @@
 namespace common\models;
 
 
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 
@@ -24,6 +25,11 @@ class ActiveRecord extends \yii\db\ActiveRecord
                         self::EVENT_BEFORE_INSERT => ['created_at'],
                     ],
                     'value' => new Expression('NOW()'),
+                ],
+                [
+                    'class' => SluggableBehavior::className(),
+                    'attribute' => 'header',
+                    'ensureUnique' => true,
                 ],
 
             ];

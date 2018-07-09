@@ -30,6 +30,3 @@ use yii\widgets\Pjax;
 
 </div>
 
-<?php Pjax::begin(); ?>
-
-<?php Pjax::end();?>

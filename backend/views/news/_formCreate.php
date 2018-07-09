@@ -6,17 +6,14 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\News */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="news-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'preview')->textInput(['maxlength' => true]) ?>
-
-<!--    --><?//= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'file')->fileInput() ?>
 
     <?= $form->field($model, 'header')->textInput(['maxlength' => true]) ?>
 
