@@ -1,7 +1,7 @@
 <p align="center"> 
     <h1 align="center">Выполнено на Yii2 advanced</h1>
 </p>
-<p>Пароль для входа в административную часть: <b>admin</b></p>
+<p>Для входа в административную часть: <b>"localhost/backend/admin"</b> пароль: <b>admin</b></p>
 <p>
 <b>"localhost/frontend/web/news"</b> - все новости.  
 </p>
