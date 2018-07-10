@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\controllers;
 
 use common\models\Gallery;
@@ -27,6 +28,13 @@ class SiteController extends Controller
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     }
+
+    public function actionIndex()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
+    return $this->render("index");
+    }
+
     public function actionNews()
     {
         $news = News::find()->all();
@@ -43,15 +51,15 @@ class SiteController extends Controller
     {
         $galleries = Gallery::find()->joinWith('tags')->all();
         $allGallery = [];
-        foreach ($galleries as $gallery){
-            $allGallery[] =  $gallery->findGallery($gallery);
+        foreach ($galleries as $gallery) {
+            $allGallery[] = $gallery->findGallery($gallery);
         }
         return $allGallery;
     }
 
     public function actionOneGallery($guid)
     {
-        $gallery = Gallery::find()->joinWith('tags')->where('guid = :guid',[':guid' => $guid])->one();
+        $gallery = Gallery::find()->joinWith('tags')->where('guid = :guid', [':guid' => $guid])->one();
         return $gallery->findGallery($gallery);
     }
 }
