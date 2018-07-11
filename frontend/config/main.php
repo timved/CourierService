@@ -41,12 +41,15 @@ return [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
-                'news/' => 'site/news',
-                'gallery' => 'site/galleries',
-                'news/<id:\d+>' => 'site/one-news',
-                'gallery/<guid:>' => 'site/one-gallery',
+//                'news/' => 'site/news',
+                'news' => 'site/find-news',
+//                'gallery' => 'site/galleries',
+                'gallery' => 'site/find-gallery',
+//                'news/<id:\d+>' => 'site/find-news',
+//                'gallery/<guid:>' => 'site/find-gallery',
             ],
         ],
+
 
     ],
     'params' => $params,

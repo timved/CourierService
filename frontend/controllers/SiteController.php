@@ -35,31 +35,31 @@ class SiteController extends Controller
     return $this->render("index");
     }
 
-    public function actionNews()
+    public function actionFindNews($id = NULL , $slug = NULL, $preview = NULL, $created_at = NULL, $header = NULL, $content = NULL)
     {
-        $news = News::find()->all();
+        $news = News::find()->filterWhere([
+            'id' => $id,
+            'slug' => $slug,
+            'preview' => $preview,
+            'DATE(created_at)' => $created_at,
+            'header' => $header,
+            'content' => $content,
+        ])->all();
         return $news;
     }
 
-    public function actionOneNews($id)
+    public function actionFindGallery($guid =NULL, $img = NULL, $description = NULL, $name = NULL)
     {
-        $news = News::find()->where('id = :id', [':id' => $id])->one();
-        return $news;
-    }
-
-    public function actionGalleries()
-    {
-        $galleries = Gallery::find()->joinWith('tags')->all();
+        $galleries = Gallery::find()->joinWith('tags')->filterWhere([
+            'guid' => $guid,
+            'img' => $img,
+            'description' => $description,
+            'name' => $name,
+        ])->all();
         $allGallery = [];
         foreach ($galleries as $gallery) {
             $allGallery[] = $gallery->findGallery($gallery);
         }
         return $allGallery;
-    }
-
-    public function actionOneGallery($guid)
-    {
-        $gallery = Gallery::find()->joinWith('tags')->where('guid = :guid', [':guid' => $guid])->one();
-        return $gallery->findGallery($gallery);
     }
 }
