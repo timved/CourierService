@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\web\MenuAsset;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\News */
 /* @var $form yii\widgets\ActiveForm */
@@ -14,15 +15,9 @@ use yii\web\MenuAsset;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'file')->fileInput() ?>
 
-<!--    --><?php //$form = ActiveForm::begin([
-//            'id' => 'reload-img'
-//    ])?>
-
-    <?= $form->field($model, 'preview')->fileInput() ?>
-<!--    --><?php //echo Html::fileInput('button-img')?>
-
-<?php echo Html::label('Old preview','update-img' )?>
+    <?php echo Html::label('Old preview', 'update-img') ?>
 
     <?php echo Html::textInput('update-img', $model->preview, [
         'class' => 'form-control',

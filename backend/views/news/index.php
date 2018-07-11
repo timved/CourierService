@@ -27,7 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'slug',
-            'preview',
+            [
+                'attribute' => 'preview',
+                'format' => 'raw',
+                'contentOptions' => ['style' => 'width:50px;'],
+            ],
             'created_at',
             'header',
             //'content:ntext',
@@ -35,5 +39,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php \yii\widgets\Pjax::end();?>
+    <?php \yii\widgets\Pjax::end(); ?>
 </div>

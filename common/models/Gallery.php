@@ -19,6 +19,7 @@ class Gallery extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $file;
     public static function tableName()
     {
         return 'galleries';
@@ -32,6 +33,7 @@ class Gallery extends \yii\db\ActiveRecord
         return [
 //            [['guid'], 'required'],
             [['description'], 'string'],
+            [['file'], 'file', 'extensions' => 'png, jpg, jpeg, gif', 'wrongExtension' => 'Допустимый формат файла: png, jpg, jpeg, gif'],
 //            [['guid'], 'string', 'max' => 36],
 //            [['img'], 'string', 'max' => 255],
 //            [['guid'], 'unique'],
@@ -45,8 +47,9 @@ class Gallery extends \yii\db\ActiveRecord
     {
         return [
             'guid' => 'Guid',
-            'img' => 'Картинка',
-            'description' => 'Описание',
+            'img' => 'img',
+            'description' => 'description',
+            'file' => 'Img'
         ];
     }
 
@@ -77,5 +80,22 @@ class Gallery extends \yii\db\ActiveRecord
 
         $mass['tags'] = $mass2;
         return $mass;
+    }
+
+    public function updateImg()
+    {
+        $gallery = new Gallery();
+        $gallery->guid = Uuid::uuid4();
+        $gallery->description = $this->description;
+        $this->guid = $gallery->guid->toString();
+        $file = $this->file;
+        $fileName = $file->getBaseName() . "{$gallery->guid->toString()}" . "." . $file->getExtension();
+        $filePath = \Yii::getAlias("@webroot/img/$fileName");
+        $gallery->img = $filePath;
+        $gallery->save();
+
+        $this->createTag($gallery->guid);
+        $this->file->saveAs($filePath);
+        Image::thumbnail("@webroot/img/$fileName", 200, 200)->save(\Yii::getAlias("@webroot/img/small/$fileName",['quality' => 70]));
     }
 }
