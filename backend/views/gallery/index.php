@@ -27,7 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'guid',
-            'img',
+//            'img',
+            [
+                'attribute' => 'img',
+                'format' => 'raw',
+                'contentOptions' => ['style' => 'width:50px;'],
+            ],
             'description:ntext',
             [
                 'label' => 'Тэги',

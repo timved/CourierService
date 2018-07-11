@@ -58,7 +58,7 @@ class NewsController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->createPreviewNews();
+            $model->createImg();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -80,7 +80,7 @@ class NewsController extends BaseController
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if($model->file = UploadedFile::getInstance($model, 'file')){
-                $model->createPreviewNews();
+                $model->createImg();
             }
             return $this->redirect(['view', 'id' => $model->id]);
 

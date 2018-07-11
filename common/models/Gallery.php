@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "galleries".
@@ -82,19 +83,13 @@ class Gallery extends \yii\db\ActiveRecord
         return $mass;
     }
 
-    public function updateImg()
+    public function createImg()
     {
-        $gallery = new Gallery();
-        $gallery->guid = Uuid::uuid4();
-        $gallery->description = $this->description;
-        $this->guid = $gallery->guid->toString();
         $file = $this->file;
-        $fileName = $file->getBaseName() . "{$gallery->guid->toString()}" . "." . $file->getExtension();
+        $fileName = $file->getBaseName() . "{$this->guid}" . "." . $file->getExtension();
         $filePath = \Yii::getAlias("@webroot/img/$fileName");
-        $gallery->img = $filePath;
-        $gallery->save();
-
-        $this->createTag($gallery->guid);
+        $this->img = $filePath;
+        $this->save();
         $this->file->saveAs($filePath);
         Image::thumbnail("@webroot/img/$fileName", 200, 200)->save(\Yii::getAlias("@webroot/img/small/$fileName",['quality' => 70]));
     }

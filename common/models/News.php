@@ -63,7 +63,7 @@ class News extends ActiveRecord
      * @return \yii\db\ActiveQuery
      */
 
-    public function createPreviewNews()
+    public function createImg()
     {
         $file = $this->file;
         $fileName = $file->getBaseName() . "{$this->header}" . "." . $file->getExtension();
