@@ -5,22 +5,27 @@
 $this->title = 'White Rooster Admin';
 ?>
 <div class="site-index">
-
-    <p>
-        <b>"localhost/frontend/web/news"</b> - все новости.
+        <b>"/news"</b> - все новости.
     </p>
 
     <p>
-        <b>"localhost/frontend/web/news/id"</b>  - одна новость (поиск по id).
+        <b>"/news?id="</b> - поиск по id.
     </p>
 
     <p>
-        <b>"localhost/frontend/web/gallery"</b>  - вся галерея.
+        <b>"/news?id=&header="</b> - поиск по нескольким полям (например: id, header).
     </p>
 
     <p>
-        <b>"localhost/frontend/web/gallery/guid"</b>  - один элемент галереи (поиск по guid).
+        <b>"/gallery"</b> - вся галерея.
     </p>
 
+    <p>
+        <b>"/gallery?guid="</b> - поиск по guid.
+    </p>
+
+    <p>
+        <b>"/news?description=&name="</b> - поиск по нескольким полям (например: description, name).
+    </p>
     <p>Ответ в формате JSON</p>
 </div>
