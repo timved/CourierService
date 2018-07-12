@@ -88,15 +88,15 @@ class News extends ActiveRecord
      * @return \yii\db\ActiveQuery
      */
 
-    public function createImg()
-    {
-        $file = $this->file;
-        $fileName = $file->getBaseName() . "{$this->header}" . "." . $file->getExtension();
-        $filePath = \Yii::getAlias("@webroot/img/$fileName");
-        $this->preview = $filePath;
-        $this->save();
-        $this->file->saveAs($filePath);
-        Image::thumbnail("@webroot/img/$fileName", 200, 200)->save(\Yii::getAlias("@webroot/img/small/$fileName",['quality' => 70]));
-    }
+//    public function createImg()
+//    {
+//        $file = $this->file;
+//        $fileName = $file->getBaseName() . "{$this->header}" . "." . $file->getExtension();
+//        $filePath = \Yii::getAlias("@webroot/img/$fileName");
+//        $this->preview = $filePath;
+//        $this->save();
+//        $this->file->saveAs($filePath);
+//        Image::thumbnail("@webroot/img/$fileName", 200, 200)->save(\Yii::getAlias("@webroot/img/small/$fileName",['quality' => 70]));
+//    }
 
 }

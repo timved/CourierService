@@ -15,7 +15,7 @@ use yii\imagine\Image;
  * @property NewsGalleries[] $newsGalleries
  * @property Tags[] $tags
  */
-class Gallery extends \yii\db\ActiveRecord
+class Gallery extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -32,12 +32,8 @@ class Gallery extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['guid'], 'required'],
             [['description'], 'string'],
             [['file'], 'file', 'extensions' => 'png, jpg, jpeg, gif', 'wrongExtension' => 'Допустимый формат файла: png, jpg, jpeg, gif'],
-//            [['guid'], 'string', 'max' => 36],
-//            [['img'], 'string', 'max' => 255],
-//            [['guid'], 'unique'],
         ];
     }
 
@@ -83,14 +79,4 @@ class Gallery extends \yii\db\ActiveRecord
         return $mass;
     }
 
-    public function createImg()
-    {
-        $file = $this->file;
-        $fileName = $file->getBaseName() . "{$this->guid}" . "." . $file->getExtension();
-        $filePath = \Yii::getAlias("@webroot/img/$fileName");
-        $this->img = $filePath;
-        $this->save();
-        $this->file->saveAs($filePath);
-        Image::thumbnail("@webroot/img/$fileName", 200, 200)->save(\Yii::getAlias("@webroot/img/small/$fileName",['quality' => 70]));
-    }
 }

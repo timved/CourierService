@@ -83,7 +83,7 @@ class GalleryController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if($model->file = UploadedFile::getInstance($model, 'file')){
-                $model->createImg();
+                $model->createImg('img',$model->guid);
             }
             return $this->redirect(['view', 'id' => $model->guid]);
         }
